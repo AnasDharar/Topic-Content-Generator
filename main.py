@@ -1,10 +1,15 @@
 import os
 import sys
+from dotenv import load_dotenv
 from google import genai
 from fpdf import FPDF
 from google.genai import types
 import json
 import re
+
+load_dotenv()
+YOUR_API_KEY = os.getenv("GEMINI_API_KEY")
+
 def write_content(pdf, content, level=0):
     if isinstance(content, dict):
         for key, value in content.items():
@@ -16,7 +21,7 @@ def write_content(pdf, content, level=0):
         pdf.multi_cell(0, 10, txt=str(content))
         pdf.ln(2)
 
-client = genai.Client(api_key="YOUR_API_KEY")
+client = genai.Client(api_key=YOUR_API_KEY)
 print("Welcome to Topic Content Generator!")
 topic= input("Enter a topic to generate content for: ")
 response = client.models.generate_content(
