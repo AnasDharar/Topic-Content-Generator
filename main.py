@@ -25,7 +25,7 @@ client = genai.Client(api_key=YOUR_API_KEY)
 print("Welcome to Topic Content Generator!")
 topic= input("Enter a topic to generate content for: ")
 response = client.models.generate_content(
-    model="gemini-1.5-flash",
+    model="gemini-2.5-flash",
     contents=f"Give 5 sub-topics of {topic}. Only subtopics seperated by commas, nothing else.", # The content to generate
 )
 subtopics = response.text.split(',')
